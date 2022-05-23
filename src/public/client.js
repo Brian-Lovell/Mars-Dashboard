@@ -22,7 +22,15 @@ const App = (state) => {
     let { rovers, apod } = state
 
     return `
-        <header></header>
+        <header>
+            <nav>
+                <ul>
+                    <li>${rovers[0]}</li>
+                    <li>${rovers[1]}</li>
+                    <li>${rovers[2]}</li>
+                </ul>
+            </nav>
+        </header>
         <main>
             ${Greeting(store.user.name)}
             <section>
