@@ -23,11 +23,12 @@ const App = (state) => {
 
     return `
         <header>
+        <h1>Mars Rovers</h1>
             <nav>
                 <ul>
-                    <li>${rovers[0]}</li>
-                    <li>${rovers[1]}</li>
-                    <li>${rovers[2]}</li>
+                    <li><a href="">${rovers[0]}</a></li>
+                    <li><a href="">${rovers[1]}</a></li>
+                    <li><a href="">${rovers[2]}</a></li>
                 </ul>
             </nav>
         </header>
@@ -47,7 +48,7 @@ const App = (state) => {
                 ${ImageOfTheDay(apod)}
             </section>
         </main>
-        <footer></footer>
+        <footer>I am a footer</footer>
     `
 }
 
