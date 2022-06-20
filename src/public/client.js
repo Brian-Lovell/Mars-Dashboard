@@ -20,7 +20,7 @@ const render = async (root, state) => {
 
 // create content
 const App = (state) => {
-    let { rovers, apod } = state
+    let { rovers, apod, mission } = state
 
     return `
         <header>
@@ -36,6 +36,9 @@ const App = (state) => {
         <main>
             ${Greeting(store.user.name)}
             <section>
+            <h2>Rover-Name Mission Data</h2>
+            ${MissionManifest(mission)}
+            </section>
                 <h2>Rover: Insert Rover Name here Brian</h2>
                 ${ImageOfTheDay(apod)}
             </section>
