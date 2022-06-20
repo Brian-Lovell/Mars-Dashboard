@@ -29,7 +29,7 @@ app.listen(port, () => {
 
 app.use('/', express.static(path.join(__dirname, '../public')))
 
-// Astronomy Picture of the Day API call
+// Astronomy Picture of the Day API route
 app.get('/apod', async (req, res) => {
     try {
         let image = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
@@ -40,7 +40,7 @@ app.get('/apod', async (req, res) => {
     }
 })
 
-// Mars Rover Photos Mission Manifest API call
+// Mars Rover Photos Mission Manifest API route
 app.get('/mm-curiosity', async (req, res) => {
     try {
         let mission = await fetch(`${mmURL}curiosity?&api_key=${process.env.API_KEY}`)
