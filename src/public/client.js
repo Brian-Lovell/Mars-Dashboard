@@ -1,6 +1,7 @@
 let store = {
     user: { name: "Student" },
     apod: '',
+    mission: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
 }
 
@@ -91,9 +92,13 @@ const ImageOfTheDay = (apod) => {
     }
 }
 
-// ------------------------------------------------------  API CALLS
+const MissionManifest = (mission) => {
+    console.log(mission)
+}
 
-// Example API call
+//API CALLS
+
+// Astronomy Picture of the Day
 const getImageOfTheDay = (state) => {
     let { apod } = state
 
@@ -101,5 +106,14 @@ const getImageOfTheDay = (state) => {
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
 
+    return
+}
+
+const getMissionManifest = (state) => {
+    let { mission } = state
+
+    fetch('http://lopcalhost:3000/mm-curiosity')
+        .then(res => res.json())
+        .then(mission => updateStore(store, { mission }))
     return
 }
