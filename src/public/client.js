@@ -98,7 +98,9 @@ const ImageOfTheDay = (apod) => {
 }
 
 const MissionManifest = (mission) => {
-    getMissionManifest(store)
+    if (store.mission === '') {
+        getMissionManifest(store)
+    }
     return `
         <p>
         <ul> 
