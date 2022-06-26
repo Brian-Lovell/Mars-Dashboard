@@ -36,9 +36,10 @@ const App = (state) => {
         <main>
             ${Greeting(store.user.name)}
             <section>
-            <h2>Rover-Name Mission Data</h2>
-            ${MissionManifest(mission)}
+                <h2>Rover-Name Mission Data</h2>
+                ${MissionManifest(mission)}
             </section>
+            <section>
                 <h2>Rover: Insert Rover Name here Brian</h2>
                 ${ImageOfTheDay(apod)}
             </section>
@@ -96,8 +97,10 @@ const ImageOfTheDay = (apod) => {
 }
 
 const MissionManifest = (mission) => {
-    const missionData = mission
-    console.log(missionData)
+    getMissionManifest(store)
+    return `
+        <p> ${mission.mission.photo_manifest.launch_date}</p>
+        `
 }
 
 //API CALLS
@@ -113,11 +116,13 @@ const getImageOfTheDay = (state) => {
     return
 }
 
+// Mission Manifest
 const getMissionManifest = (state) => {
     let { mission } = state
 
-    fetch('http://lopcalhost:3000/mm-curiosity')
+    fetch(`http://localhost:3000/mission`)
         .then(res => res.json())
         .then(mission => updateStore(store, { mission }))
+
     return
 }
