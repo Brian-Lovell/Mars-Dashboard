@@ -3,6 +3,7 @@ let store = {
     apod: '',
     mission: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
+    selectedrover: "",
 }
 
 // add our markup to the page
@@ -99,7 +100,13 @@ const ImageOfTheDay = (apod) => {
 const MissionManifest = (mission) => {
     getMissionManifest(store)
     return `
-        <p> ${mission.mission.photo_manifest.launch_date}</p>
+        <p>
+        <ul> 
+            <li>Launch Date: ${mission.mission.photo_manifest.launch_date}</li>
+            <li>Landing Date: ${mission.mission.photo_manifest.landing_date}</li>
+            <li>Rover Status: ${mission.mission.photo_manifest.status}</li>
+        </ul>
+        </p>
         `
 }
 
