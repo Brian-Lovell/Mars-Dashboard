@@ -40,7 +40,7 @@ app.get('/apod', async (req, res) => {
     }
 })
 
-// Mars Rover Photos Mission Manifest API route
+// Mars Rover Mission Manifest API route
 app.get('/mission', async (req, res) => {
     try {
         let mission = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity?&api_key=${process.env.API_KEY}`)
@@ -48,5 +48,16 @@ app.get('/mission', async (req, res) => {
         res.send({ mission })
     } catch (err) {
         console.log('error', err);
+    }
+})
+
+// Mar Rover Phtos API route
+app.get('/photos', async (req, res) => {
+    try {
+        let photos = await fetch(``)
+            .then(res => res.json())
+        res.send({ photos })
+    } catch (err) {
+        console.log('error', err)
     }
 })
