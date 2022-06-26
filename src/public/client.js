@@ -3,7 +3,7 @@ let store = {
     apod: '',
     mission: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-    selectedrover: "",
+    selectedrover: '',
 }
 
 // add our markup to the page
