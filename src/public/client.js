@@ -96,7 +96,8 @@ const ImageOfTheDay = (apod) => {
 }
 
 const MissionManifest = (mission) => {
-    console.log(mission)
+    const missionData = mission
+    console.log(missionData)
 }
 
 //API CALLS
