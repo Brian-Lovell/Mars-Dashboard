@@ -9,7 +9,7 @@ const app = express()
 const port = 3000
 
 // API URL
-const mmURL = 'https://api.nasa.gov/mars-photos/api/v1/manifests/'
+// const mmURL = 'https://api.nasa.gov/mars-photos/api/v1/manifests/'
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extend: false }))
@@ -41,9 +41,9 @@ app.get('/apod', async (req, res) => {
 })
 
 // Mars Rover Photos Mission Manifest API route
-app.get('/mm-curiosity', async (req, res) => {
+app.get('/mission', async (req, res) => {
     try {
-        let mission = await fetch(`${mmURL}curiosity?&api_key=${process.env.API_KEY}`)
+        let mission = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity?&api_key=${process.env.API_KEY}`)
             .then(res => res.json())
         res.send({ mission })
     } catch (err) {
