@@ -6,7 +6,7 @@ let store = {
     selectedrover: '',
 }
 
-// add our markup to the page
+// Add elementals to page
 const root = document.getElementById('root')
 
 const updateStore = (store, newState) => {
@@ -19,7 +19,7 @@ const render = async (root, state) => {
 }
 
 
-// create content
+//Create page layout
 const App = (state) => {
     let { rovers, apod, mission } = state
 
