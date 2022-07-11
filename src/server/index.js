@@ -54,7 +54,7 @@ app.get('/mission', async (req, res) => {
 // Mar Rover Phtos API route
 app.get('/photos', async (req, res) => {
     try {
-        let photos = await fetch(``)
+        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`)
             .then(res => res.json())
         res.send({ photos })
     } catch (err) {
