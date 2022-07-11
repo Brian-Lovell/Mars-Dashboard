@@ -2,8 +2,9 @@ let store = {
     user: { name: "Student" },
     apod: '',
     mission: '',
+    gallery: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-    selectedrover: '',
+    rover: '',
 }
 
 // Add elementals to page
@@ -18,34 +19,34 @@ const render = async (root, state) => {
     root.innerHTML = App(state)
 }
 
-
 //Create page layout
 const App = (state) => {
-    let { rovers, apod, mission } = state
+    let { rovers, apod, mission, gallery, rover} = state
 
     return `
         <header>
         <h1>Mars Rovers</h1>
             <nav>
                 <ul>
-                    <li><a id="curiosity" href="">${rovers[0]}</a></li>
-                    <li><a id="opportunity" href="">${rovers[1]}</a></li>
-                    <li><a id="spirit" href="">${rovers[2]}</a></li>
+                    <li><button id="one" type="button" onclick="RoverSelect('curiosity')">${rovers[0]}</button></li>
+                    <li><button id="two" type="button" onclick="RoverSelect('opportunity')">${rovers[1]}</button></li>
+                    <li><button id="three" type="button" onclick="RoverSelect('spirit')">${rovers[2]}</button></li>
                 </ul>
             </nav>
         </header>
         <main>
             ${Greeting(store.user.name)}
+            ${store.rover}
             <section>
-                <h2>Rover-Name Mission Data</h2>
-                ${MissionManifest(mission)}
-            </section>
+            ${ImageGallery(gallery, rover)}
             <section>
-                <h2>Rover: Insert Rover Name here Brian</h2>
-                ${ImageOfTheDay(apod)}
+            ${MissionManifest(mission, rover)}
             </section>
         </main>
-        <footer>I am a footer</footer>
+        <aside>
+        ${ImageOfTheDay(apod)}
+        </aside>
+        <footer>I am a footer</footer>      
     `
 }
 
@@ -54,7 +55,7 @@ window.addEventListener('load', () => {
     render(root, store)
 })
 
-// ------------------------------------------------------  COMPONENTS
+// ------COMPONENTS
 
 // Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
 const Greeting = (name) => {
@@ -69,7 +70,7 @@ const Greeting = (name) => {
     `
 }
 
-// Example of a pure function that renders infomation requested from the backend
+// Image of the Day
 const ImageOfTheDay = (apod) => {
 
     // If image does not already exist, or it is not from today -- request it again
@@ -82,7 +83,7 @@ const ImageOfTheDay = (apod) => {
         getImageOfTheDay(store)
     }
 
-    // check if the photo of the day is actually type video!
+    // Check if media type is video
     if (apod.media_type === "video") {
         return (`
             <p>See today's featured video <a href="${apod.url}">here</a></p>
@@ -97,6 +98,7 @@ const ImageOfTheDay = (apod) => {
     }
 }
 
+// Mission Manifest
 const MissionManifest = (mission) => {
     if (store.mission === '') {
         getMissionManifest(store)
@@ -112,7 +114,34 @@ const MissionManifest = (mission) => {
         `
 }
 
+// Image Gallery
+const ImageGallery = (gallery) => {
+    if (store.gallery === '') {
+        getImageGallery(store)
+    }
+    return `
+    <p>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </p>
+    `
+}
+
+// Rover Select
+const RoverSelect = (rover) => {   
+    getRover(rover)
+    return `
+    <p>${rover}</p>`
+}
 //API CALLS
+const getRover = (state) => {
+    let { rover } = state
+    updateStore(store, { rover})
+    
+    return
+}
 
 // Astronomy Picture of the Day
 const getImageOfTheDay = (state) => {
@@ -132,6 +161,18 @@ const getMissionManifest = (state) => {
     fetch(`http://localhost:3000/mission`)
         .then(res => res.json())
         .then(mission => updateStore(store, { mission }))
+
+    return
+}
+
+// Image Gallery
+
+const getImageGallery = (state) => {
+    let { gallery } = state
+
+    fetch(`http://localhost:3000/photos`)
+        .then(res => res.json())
+        .then(gallery => updateStore(store, { gallery }))
 
     return
 }
