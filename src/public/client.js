@@ -28,9 +28,9 @@ const App = (state) => {
         <h1>Mars Rovers</h1>
             <nav>
                 <ul>
-                    <li><a href="">${rovers[0]}</a></li>
-                    <li><a href="">${rovers[1]}</a></li>
-                    <li><a href="">${rovers[2]}</a></li>
+                    <li><a id="curiosity" href="">${rovers[0]}</a></li>
+                    <li><a id="opportunity" href="">${rovers[1]}</a></li>
+                    <li><a id="spirit" href="">${rovers[2]}</a></li>
                 </ul>
             </nav>
         </header>
