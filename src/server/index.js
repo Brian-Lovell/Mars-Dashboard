@@ -39,9 +39,9 @@ app.get('/apod', async (req, res) => {
         console.log('error:', err);
     }
 })
-
+// Curiosity Rover routes
 // Mars Rover Mission Manifest API route
-app.get('/mission', async (req, res) => {
+app.get('/mission-curiosity', async (req, res) => {
     try {
         let mission = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity?&api_key=${process.env.API_KEY}`)
             .then(res => res.json())
@@ -52,9 +52,55 @@ app.get('/mission', async (req, res) => {
 })
 
 // Mar Rover Phtos API route
-app.get('/photos', async (req, res) => {
+app.get('/photos-curiosity', async (req, res) => {
     try {
         let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`)
+            .then(res => res.json())
+        res.send({ photos })
+    } catch (err) {
+        console.log('error', err)
+    }
+})
+
+// Opportunity Rover routes
+// Mars Rover Mission Manifest API route
+app.get('/mission-opportunity', async (req, res) => {
+    try {
+        let mission = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/opportunity?&api_key=${process.env.API_KEY}`)
+            .then(res => res.json())
+        res.send({ mission })
+    } catch (err) {
+        console.log('error', err);
+    }
+})
+
+// Mar Rover Phtos API route
+app.get('/photos-opportunity', async (req, res) => {
+    try {
+        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`)
+            .then(res => res.json())
+        res.send({ photos })
+    } catch (err) {
+        console.log('error', err)
+    }
+})
+
+// Spirit Rover routes
+// Mars Rover Mission Manifest API route
+app.get('/mission-spirit', async (req, res) => {
+    try {
+        let mission = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/spirit?&api_key=${process.env.API_KEY}`)
+            .then(res => res.json())
+        res.send({ mission })
+    } catch (err) {
+        console.log('error', err);
+    }
+})
+
+// Mar Rover Phtos API route
+app.get('/photos-spirit', async (req, res) => {
+    try {
+        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`)
             .then(res => res.json())
         res.send({ photos })
     } catch (err) {
