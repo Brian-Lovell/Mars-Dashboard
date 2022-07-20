@@ -36,7 +36,7 @@ const App = (state) => {
         </header>
         <main>
             ${Greeting(store.user.name)}
-            ${store.rover}
+            <h1>${store.rover}</h1>
             <section>
             ${ImageGallery(gallery, rover)}
             <section>
@@ -99,9 +99,9 @@ const ImageOfTheDay = (apod) => {
 }
 
 // Mission Manifest
-const MissionManifest = (mission) => {
+const MissionManifest = (mission, rover) => {
     if (store.mission === '') {
-        getMissionManifest(store)
+        getMissionManifest(store, rover)
     }
     return `
         <p>
@@ -155,7 +155,7 @@ const getImageOfTheDay = (state) => {
 }
 
 // Mission Manifest
-const getMissionManifest = (state) => {
+const getMissionManifest = (state, rover) => {
     let { mission } = state
 
     fetch(`http://localhost:3000/mission`)
