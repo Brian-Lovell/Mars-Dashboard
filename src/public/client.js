@@ -158,7 +158,7 @@ const getImageOfTheDay = (state) => {
 const getMissionManifest = (state, rover) => {
     let { mission } = state
 
-    fetch(`http://localhost:3000/mission`)
+    fetch(`http://localhost:3000/mission-${rover}`)
         .then(res => res.json())
         .then(mission => updateStore(store, { mission }))
 
@@ -167,10 +167,10 @@ const getMissionManifest = (state, rover) => {
 
 // Image Gallery
 
-const getImageGallery = (state) => {
+const getImageGallery = (state, rover) => {
     let { gallery } = state
 
-    fetch(`http://localhost:3000/photos`)
+    fetch(`http://localhost:3000/photos-${rover}`)
         .then(res => res.json())
         .then(gallery => updateStore(store, { gallery }))
 
