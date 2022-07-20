@@ -25,28 +25,32 @@ const App = (state) => {
 
     return `
         <header>
-        <h1>Mars Rovers</h1>
-            <nav>
-                <ul>
-                    <li><button id="one" type="button" onclick="RoverSelect('curiosity')">${rovers[0]}</button></li>
-                    <li><button id="two" type="button" onclick="RoverSelect('opportunity')">${rovers[1]}</button></li>
-                    <li><button id="three" type="button" onclick="RoverSelect('spirit')">${rovers[2]}</button></li>
-                </ul>
-            </nav>
+            <h1>Mars Rovers</h1>
         </header>
+        <nav>
+            <ul>
+                <li><button id="one" type="button" onclick="RoverSelect('curiosity')">${rovers[0]}</button></li>
+                <li><button id="two" type="button" onclick="RoverSelect('opportunity')">${rovers[1]}</button></li>
+                <li><button id="three" type="button" onclick="RoverSelect('spirit')">${rovers[2]}</button></li>
+            </ul>
+        </nav>
         <main>
-            ${Greeting(store.user.name)}
-            <h1>${store.rover}</h1>
-            <section>
-            ${ImageGallery(gallery, rover)}
-            <section>
-            ${MissionManifest(mission, rover)}
-            </section>
+            <article>
+                ${Greeting(store.user.name)}
+                <h1>Mars Rover: ${store.rover}</h1>
+                <h2>Mission Manifiest</h2>
+                <p>${MissionManifest(mission, rover)}</p>
+                <section class="gallery">
+                ${ImageGallery(gallery, rover)}
+                </section>
+            </article>
         </main>
         <aside>
         ${ImageOfTheDay(apod)}
         </aside>
-        <footer>I am a footer</footer>      
+        <footer>
+        <p>Powered by NASA Open APIs <a href="https://api.nasa.gov/">https://api.nasa.gov</a></p>
+        </footer>    
     `
 }
 
