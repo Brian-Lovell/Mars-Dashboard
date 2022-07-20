@@ -171,9 +171,9 @@ const getMissionManifest = (state, rover) => {
 
 const getImageGallery = (state, rover) => {
     let { gallery } = state
-    const selRover = rover
+    const selectedRover = rover
 
-    fetch(`http://localhost:3000/photos-${selRover}`)
+    fetch(`http://localhost:3000/photos-${selectedRover}`)
         .then(res => res.json())
         .then(gallery => updateStore(store, { gallery }))
 
