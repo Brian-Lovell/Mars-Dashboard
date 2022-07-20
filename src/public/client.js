@@ -4,7 +4,7 @@ let store = {
     mission: '',
     gallery: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-    rover: '',
+    rover: 'curiosity',
 }
 
 // Add elementals to page
@@ -115,14 +115,15 @@ const MissionManifest = (mission, rover) => {
 }
 
 // Image Gallery
-const ImageGallery = (gallery) => {
+const ImageGallery = (gallery, rover) => {
     if (store.gallery === '') {
-        getImageGallery(store)
+        getImageGallery(store, rover)
     }
     return `
     <p>
+        <h3>Gallery</h3>
         <ul>
-            <li></li>
+            <li><img src="${gallery.photos.photos[0].img_src}" height="350px" width="100%" /></li>
             <li></li>
         </ul>
     </p>
@@ -157,8 +158,9 @@ const getImageOfTheDay = (state) => {
 // Mission Manifest
 const getMissionManifest = (state, rover) => {
     let { mission } = state
+    const selectedRover = rover
 
-    fetch(`http://localhost:3000/mission-${rover}`)
+    fetch(`http://localhost:3000/mission-${selectedRover}`)
         .then(res => res.json())
         .then(mission => updateStore(store, { mission }))
 
@@ -169,8 +171,9 @@ const getMissionManifest = (state, rover) => {
 
 const getImageGallery = (state, rover) => {
     let { gallery } = state
+    const selRover = rover
 
-    fetch(`http://localhost:3000/photos-${rover}`)
+    fetch(`http://localhost:3000/photos-${selRover}`)
         .then(res => res.json())
         .then(gallery => updateStore(store, { gallery }))
 
