@@ -23,13 +23,26 @@ body {
   main {
     display:flex;
     flex-direction: column;
-    flex: 1;
+    flex:2;
     padding: 20px;
   }
 
   article {
     display:flex;
     flex-direction: column;
+    flex:2;
+  }
+
+  .mission-data {
+    flex:1;
+  }
+
+  .gallery {
+    flex:2;
+  }
+
+  aside {
+    flex:1;
   }
   
   footer {
@@ -39,18 +52,24 @@ body {
 
   h1 {
     display:flex;
-    justify-content: left;
+    justify-content: center;
   }
   
   /* -------------------  TABLET  --------------------- */
   @media (min-width: 768px) {
-    /* use mobile */
+    article {
+      display:flex;
+      flex-direction: row;
+    }
   }
   
   /* -------------------  DESKTOP  -------------------- */
   
   @media (min-width: 1224px) {
-    /* use mobile */
+    main {
+      display:flex;
+      flex-direction: row;
+    }
   }
   
   /* -------------------  LARGE SCREENS  -------------- */
