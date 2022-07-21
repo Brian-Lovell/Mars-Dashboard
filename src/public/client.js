@@ -4,7 +4,7 @@ let store = {
     mission: '',
     gallery: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-    rover: 'curiosity',
+    rover: 'Curiosity',
 }
 
 // Add elementals to page
@@ -36,18 +36,20 @@ const App = (state) => {
         </nav>
         <main>
             <article>
-                ${Greeting(store.user.name)}
-                <h1>Mars Rover: ${store.rover}</h1>
-                <h2>Mission Manifiest</h2>
-                <p>${MissionManifest(mission, rover)}</p>
+                <section class="mission-data">
+                    ${Greeting(store.user.name)}
+                    <h2>Mars Rover: ${store.rover}</h2>
+                    <h2>Mission Manifiest</h2>
+                    <p>${MissionManifest(mission, rover)}</p>
+                </section>
                 <section class="gallery">
-                ${ImageGallery(gallery, rover)}
+                    ${ImageGallery(gallery, rover)}
                 </section>
             </article>
+            <aside>
+            ${ImageOfTheDay(apod)}
+            </aside>
         </main>
-        <aside>
-        ${ImageOfTheDay(apod)}
-        </aside>
         <footer>
         <p>Powered by NASA Open APIs <a href="https://api.nasa.gov/">https://api.nasa.gov</a></p>
         </footer>    
@@ -96,7 +98,7 @@ const ImageOfTheDay = (apod) => {
         `)
     } else {
         return (`
-            <img src="${apod.image.url}" height="350px" width="100%" />
+            <img src="${apod.image.url}" height="350px" width="90%" />
             <p>${apod.image.explanation}</p>
         `)
     }
