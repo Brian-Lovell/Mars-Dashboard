@@ -47,7 +47,9 @@ const App = (state) => {
                 </section>
             </article>
             <aside>
-            ${ImageOfTheDay(apod)}
+                <section class="apod">
+                    ${ImageOfTheDay(apod)}
+                </section>
             </aside>
         </main>
         <footer>
@@ -98,8 +100,11 @@ const ImageOfTheDay = (apod) => {
         `)
     } else {
         return (`
-            <img src="${apod.image.url}" height="350px" width="90%" />
-            <p>${apod.image.explanation}</p>
+            <h3>Astronomy Picture of the Day</h3>
+            <figure>
+                <img src="${apod.image.url}" alt="Astronomy Picture of the Day APOD" />
+                <figcaption>${apod.image.explanation}</figcaption>
+            </figure>
         `)
     }
 }
@@ -110,13 +115,11 @@ const MissionManifest = (mission, rover) => {
         getMissionManifest(store, rover)
     }
     return `
-        <p>
         <ul> 
             <li>Launch Date: ${mission.mission.photo_manifest.launch_date}</li>
             <li>Landing Date: ${mission.mission.photo_manifest.landing_date}</li>
             <li>Rover Status: ${mission.mission.photo_manifest.status}</li>
         </ul>
-        </p>
         `
 }
 
@@ -127,11 +130,11 @@ const ImageGallery = (gallery, rover) => {
     }
     return `
     <p>
-        <h3>Gallery</h3>
-        <ul>
-            <li><img src="${gallery.photos.photos[0].img_src}" height="350px" width="100%" /></li>
-            <li></li>
-        </ul>
+        <h3>Front Hazard Avoidance Camera</h3>
+        <figure>
+            <img src="${gallery.photos.photos[0].img_src}" alt="Astronomy Picture of the Day"/>
+            <figcaption>FHAZ<figcaption>
+        </figure>
     </p>
     `
 }
