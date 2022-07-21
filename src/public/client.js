@@ -130,10 +130,10 @@ const ImageGallery = (gallery, rover) => {
     }
     return `
     <p>
-        <h3>Front Hazard Avoidance Camera</h3>
+        <h3>${gallery.photos.photos[0].camera.full_name}</h3>
         <figure>
             <img src="${gallery.photos.photos[0].img_src}" alt="Astronomy Picture of the Day"/>
-            <figcaption>FHAZ<figcaption>
+            <figcaption>Photo Date: ${gallery.photos.photos[0].earth_date}<figcaption>
         </figure>
     </p>
     `
