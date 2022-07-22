@@ -37,7 +37,6 @@ const App = (state) => {
         <main>
             <article>
                 <section class="mission-data">
-                    ${Greeting(store.user.name)}
                     <h2>Mars Rover: ${store.rover}</h2>
                     <h2>Mission Manifiest</h2>
                     ${MissionManifest(mission, rover)}
@@ -66,17 +65,17 @@ window.addEventListener('load', () => {
 // ------COMPONENTS
 
 // Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
-const Greeting = (name) => {
-    if (name) {
-        return `
-            <h1>Welcome, ${name}!</h1>
-        `
-    }
+// const Greeting = (name) => {
+//     if (name) {
+//         return `
+//             <h1>Welcome, ${name}!</h1>
+//         `
+//     }
 
-    return `
-        <h1>Hello!</h1>
-    `
-}
+//     return `
+//         <h1>Hello!</h1>
+//     `
+// }
 
 // Image of the Day
 const ImageOfTheDay = (apod) => {
