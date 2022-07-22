@@ -29,9 +29,9 @@ const App = (state) => {
         </header>
         <nav>
             <ul>
-                <li><button id="one" type="button" onclick="RoverSelect('curiosity')">${rovers[0]}</button></li>
-                <li><button id="two" type="button" onclick="RoverSelect('opportunity')">${rovers[1]}</button></li>
-                <li><button id="three" type="button" onclick="RoverSelect('spirit')">${rovers[2]}</button></li>
+                <li><button id="one" type="button" onclick="getRover('${rovers[0]}')">${rovers[0]}</button></li>
+                <li><button id="two" type="button" onclick="getRover('${rovers[1]}')">${rovers[1]}</button></li>
+                <li><button id="three" type="button" onclick="getRover('${rovers[2]}')">${rovers[2]}</button></li>
             </ul>
         </nav>
         <main>
@@ -137,15 +137,15 @@ const ImageGallery = (gallery, rover) => {
 }
 
 // Rover Select
-const RoverSelect = (rover) => {   
-    getRover(rover)
-    return `
-    <p>${rover}</p>`
-}
+// const RoverSelect = (rover) => {   
+//     getRover(rover)
+// }
 //API CALLS
+// Rover Select
 const getRover = (state) => {
     let { rover } = state
-    updateStore(store, { rover})
+    rover => updateStore(store, { rover})
+    console.log(state)
     
     return
 }
