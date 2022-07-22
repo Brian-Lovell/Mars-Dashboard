@@ -40,7 +40,7 @@ const App = (state) => {
                     ${Greeting(store.user.name)}
                     <h2>Mars Rover: ${store.rover}</h2>
                     <h2>Mission Manifiest</h2>
-                    <p>${MissionManifest(mission, rover)}</p>
+                    ${MissionManifest(mission, rover)}
                 </section>
                 <section class="gallery">
                     ${ImageGallery(gallery, rover)}
@@ -129,13 +129,11 @@ const ImageGallery = (gallery, rover) => {
         getImageGallery(store, rover)
     }
     return `
-    <p>
         <h3>${gallery.photos.photos[0].camera.full_name}</h3>
         <figure>
             <img src="${gallery.photos.photos[0].img_src}" alt="Astronomy Picture of the Day"/>
             <figcaption>Photo Date: ${gallery.photos.photos[0].earth_date}<figcaption>
         </figure>
-    </p>
     `
 }
 
