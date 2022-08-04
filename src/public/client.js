@@ -12,6 +12,7 @@ const root = document.getElementById('root')
 
 const updateStore = (store, newState) => {
     store = Object.assign(store, newState)
+    console.log("Update Store Function",store,newState)
     render(root, store)
 }
 
@@ -37,7 +38,7 @@ const App = (state) => {
         <main>
             <article>
                 <section class="mission-data">
-                    <h2>Mars Rover: ${store.rover}</h2>
+                    <h2>Mars Rover: ${state.rover}</h2>
                     <h2>Mission Manifiest</h2>
                     ${MissionManifest(mission, rover)}
                 </section>
@@ -136,17 +137,15 @@ const ImageGallery = (gallery, rover) => {
     `
 }
 
-// Rover Select
-// const RoverSelect = (rover) => {   
-//     getRover(rover)
-// }
 //API CALLS
 // Rover Select
 const getRover = (state) => {
     let { rover } = state
-    rover => updateStore(store, { rover})
-    console.log(state)
-    
+
+    if (store.rover != state) {
+        console.log("Get Rover function",state, { rover })
+        updateStore(store, { rover })
+    }
     return
 }
 
