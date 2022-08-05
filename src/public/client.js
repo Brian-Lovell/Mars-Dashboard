@@ -22,7 +22,7 @@ const render = async (root, state) => {
 
 //Create page layout
 const App = (state) => {
-    let { rovers, apod, mission, gallery, rover} = state
+    let { rovers, apod, mission, gallery, rover,} = state
 
     return `
         <header>
@@ -38,7 +38,7 @@ const App = (state) => {
         <main>
             <article>
                 <section class="mission-data">
-                    <h2>Mars Rover: ${state.rover}</h2>
+                    <h2>Mars Rover: ${rover}</h2>
                     <h2>Mission Manifiest</h2>
                     ${MissionManifest(mission, rover)}
                 </section>
@@ -64,19 +64,6 @@ window.addEventListener('load', () => {
 })
 
 // ------COMPONENTS
-
-// Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
-// const Greeting = (name) => {
-//     if (name) {
-//         return `
-//             <h1>Welcome, ${name}!</h1>
-//         `
-//     }
-
-//     return `
-//         <h1>Hello!</h1>
-//     `
-// }
 
 // Image of the Day
 const ImageOfTheDay = (apod) => {
@@ -111,8 +98,10 @@ const ImageOfTheDay = (apod) => {
 
 // Mission Manifest
 const MissionManifest = (mission, rover) => {
-    if (store.mission === '') {
+    
+    if (!mission) {
         getMissionManifest(store, rover)
+        
     }
     return `
         <ul> 
@@ -125,8 +114,9 @@ const MissionManifest = (mission, rover) => {
 
 // Image Gallery
 const ImageGallery = (gallery, rover) => {
-    if (store.gallery === '') {
+    if (!gallery) {
         getImageGallery(store, rover)
+        
     }
     return `
         <h3>${gallery.photos.photos[0].camera.full_name}</h3>
@@ -140,12 +130,9 @@ const ImageGallery = (gallery, rover) => {
 //API CALLS
 // Rover Select
 const getRover = (state) => {
-    let { rover } = state
+    let rover = state
+    updateStore(store, { rover })
 
-    if (store.rover != state) {
-        console.log("Get Rover function",state, { rover })
-        updateStore(store, { rover })
-    }
     return
 }
 
