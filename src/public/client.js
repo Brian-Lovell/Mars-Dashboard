@@ -114,15 +114,15 @@ const MissionManifest = (mission, rover) => {
 
 // Image Gallery
 const ImageGallery = (gallery, rover) => {
-    if (!gallery || gallery.photos.photos[0].rover.name != rover) {
+    if (!gallery || gallery.photos.latest_photos[0].rover.name != rover) {
         getImageGallery(store, rover)
         
     }
     return `
-        <h3>${gallery.photos.photos[0].camera.full_name}</h3>
+        <h3>${gallery.photos.latest_photos[0].camera.full_name}</h3>
         <figure>
-            <img src="${gallery.photos.photos[0].img_src}" alt="Astronomy Picture of the Day"/>
-            <figcaption>Photo Date: ${gallery.photos.photos[0].earth_date}<figcaption>
+            <img src="${gallery.photos.latest_photos[0].img_src}" alt="Astronomy Picture of the Day"/>
+            <figcaption>Photo Date: ${gallery.photos.latest_photos[0].earth_date}<figcaption>
         </figure>
     `
 }
