@@ -99,7 +99,7 @@ const ImageOfTheDay = (apod) => {
 // Mission Manifest
 const MissionManifest = (mission, rover) => {
     
-    if (!mission) {
+    if (!mission || mission.mission.photo_manifest.name != rover) {
         getMissionManifest(store, rover)
         
     }
@@ -114,7 +114,7 @@ const MissionManifest = (mission, rover) => {
 
 // Image Gallery
 const ImageGallery = (gallery, rover) => {
-    if (!gallery) {
+    if (!gallery || gallery.photos.photos[0].rover.name != rover) {
         getImageGallery(store, rover)
         
     }
