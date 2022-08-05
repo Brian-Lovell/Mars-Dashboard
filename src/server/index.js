@@ -54,7 +54,7 @@ app.get('/mission-curiosity', async (req, res) => {
 // Mar Rover Phtos API route
 app.get('/photos-curiosity', async (req, res) => {
     try {
-        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`)
+        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=${process.env.API_KEY}`)
             .then(res => res.json())
         res.send({ photos })
     } catch (err) {
@@ -77,7 +77,7 @@ app.get('/mission-opportunity', async (req, res) => {
 // Mar Rover Phtos API route
 app.get('/photos-opportunity', async (req, res) => {
     try {
-        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`)
+        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/latest_photos?api_key=${process.env.API_KEY}`)
             .then(res => res.json())
         res.send({ photos })
     } catch (err) {
@@ -100,7 +100,7 @@ app.get('/mission-spirit', async (req, res) => {
 // Mar Rover Phtos API route
 app.get('/photos-spirit', async (req, res) => {
     try {
-        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&camera=fhaz&api_key=${process.env.API_KEY}`)
+        let photos = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/latest_photos?api_key=${process.env.API_KEY}`)
             .then(res => res.json())
         res.send({ photos })
     } catch (err) {
