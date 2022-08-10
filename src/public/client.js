@@ -1,28 +1,38 @@
-let store = {
+let store = Immutable.Map({
     user: { name: "Student" },
     apod: '',
     mission: '',
     gallery: '',
-    rovers: ['Curiosity', 'Opportunity', 'Spirit'],
+    rovers: Immutable.List(['Curiosity', 'Opportunity', 'Spirit']),
     rover: 'Curiosity',
-}
+})
 
 // Add elementals to page
 const root = document.getElementById('root')
 
-const updateStore = (store, newState) => {
-    store = Object.assign(store, newState)
-    console.log("Update Store Function",store,newState)
+const updateStore = (state, newState) => {
+    console.log("updateStore function store and newState",state,newState)
+    store = store.merge(newState)
     render(root, store)
 }
 
 const render = async (root, state) => {
+    console.log("render function: root, state", root,state)
     root.innerHTML = App(state)
 }
 
 //Create page layout
 const App = (state) => {
-    let { rovers, apod, mission, gallery, rover,} = state
+    // let { rovers, apod, mission, gallery, rover,} = state
+    let mission = state.get("mission")
+    let rover = state.get("rover")
+    let apod = state.get("apod")
+    let gallery = state.get("gallery")
+    let rovers = state.get("rovers")
+    console.log("State Get Mission:", mission)
+    console.log("App function: state",state)
+    console.log("rovers: ", rovers)
+ 
 
     return `
         <header>
@@ -30,7 +40,7 @@ const App = (state) => {
         </header>
         <nav>
             <ul>
-                <li><button id="one" type="button" onclick="getRover('${rovers[0]}')">${rovers[0]}</button></li>
+                <li><button id="one" type="button" onclick="getRover('${rovers.get[0]}')">${rovers[0]}</button></li>
                 <li><button id="two" type="button" onclick="getRover('${rovers[1]}')">${rovers[1]}</button></li>
                 <li><button id="three" type="button" onclick="getRover('${rovers[2]}')">${rovers[2]}</button></li>
             </ul>
@@ -71,11 +81,11 @@ const ImageOfTheDay = (apod) => {
     // If image does not already exist, or it is not from today -- request it again
     const today = new Date()
     const photodate = new Date(apod.date)
-    // console.log(photodate.getDate(), today.getDate());
+    console.log(photodate.getDate(), today.getDate());
 
-    // console.log(photodate.getDate() === today.getDate());
+    console.log(photodate.getDate() === today.getDate());
     if (!apod || apod.date === today.getDate() ) {
-        getImageOfTheDay(store)
+        getImageOfTheDay(apod)
     }
 
     // Check if media type is video
@@ -98,9 +108,10 @@ const ImageOfTheDay = (apod) => {
 
 // Mission Manifest
 const MissionManifest = (mission, rover) => {
+    console.log("MissionManifest function: mission, rover", mission, rover)
     
     if (!mission || mission.mission.photo_manifest.name != rover) {
-        getMissionManifest(store, rover)
+        getMissionManifest(mission, rover)
         
     }
     return `
@@ -114,8 +125,9 @@ const MissionManifest = (mission, rover) => {
 
 // Image Gallery
 const ImageGallery = (gallery, rover) => {
+    console.log("ImageGallery function: gallery, rover ", gallery, rover)
     if (!gallery || gallery.photos.latest_photos[0].rover.name != rover) {
-        getImageGallery(store, rover)
+        getImageGallery(gallery, rover)
         
     }
     return `
@@ -131,7 +143,8 @@ const ImageGallery = (gallery, rover) => {
 // Rover Select
 const getRover = (state) => {
     let rover = state
-    updateStore(store, { rover })
+    console.log("getRover function: state", state)
+    updateStore(state, { rover })
 
     return
 }
@@ -139,10 +152,11 @@ const getRover = (state) => {
 // Astronomy Picture of the Day
 const getImageOfTheDay = (state) => {
     let { apod } = state
+    console.log("getImageOfTheDay function: state", state)
 
     fetch(`http://localhost:3000/apod`)
         .then(res => res.json())
-        .then(apod => updateStore(store, { apod }))
+        .then(apod => updateStore(state, { apod }))
 
     return
 }
@@ -151,10 +165,11 @@ const getImageOfTheDay = (state) => {
 const getMissionManifest = (state, rover) => {
     let { mission } = state
     const selectedRover = rover
+    console.log("getMissionManifest function: state, rover", state, rover)
 
     fetch(`http://localhost:3000/mission-${selectedRover}`)
         .then(res => res.json())
-        .then(mission => updateStore(store, { mission }))
+        .then(mission => updateStore(state, { mission }))
 
     return
 }
@@ -164,10 +179,11 @@ const getMissionManifest = (state, rover) => {
 const getImageGallery = (state, rover) => {
     let { gallery } = state
     const selectedRover = rover
+    console.log("getImageGallery function: state, rover", state, rover)
 
     fetch(`http://localhost:3000/photos-${selectedRover}`)
         .then(res => res.json())
-        .then(gallery => updateStore(store, { gallery }))
+        .then(gallery => updateStore(state, { gallery }))
 
     return
 }
