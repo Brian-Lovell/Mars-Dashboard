@@ -40,9 +40,9 @@ const App = (state) => {
         </header>
         <nav>
             <ul>
-                <li><button id="one" type="button" onclick="getRover('${rovers.get[0]}')">${rovers[0]}</button></li>
-                <li><button id="two" type="button" onclick="getRover('${rovers[1]}')">${rovers[1]}</button></li>
-                <li><button id="three" type="button" onclick="getRover('${rovers[2]}')">${rovers[2]}</button></li>
+                <li><button id="one" type="button" onclick="getRover('${rovers.get(0)}')">${rovers.get(0)}</button></li>
+                <li><button id="two" type="button" onclick="getRover('${rovers.get(1)}')">${rovers.get(1)}</button></li>
+                <li><button id="three" type="button" onclick="getRover('${rovers.get(2)}')">${rovers.get(2)}</button></li>
             </ul>
         </nav>
         <main>
