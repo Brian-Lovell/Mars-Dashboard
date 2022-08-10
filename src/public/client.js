@@ -98,9 +98,10 @@ const ImageOfTheDay = (apod) => {
     } else {
         return (`
             <h3>Astronomy Picture of the Day</h3>
+            <h4>${apod && apod.image.title}</h4>
             <figure>
-                <img src="${apod.image.url}" alt="Astronomy Picture of the Day APOD" />
-                <figcaption>${apod.image.explanation}</figcaption>
+                <img src="${apod && apod.image.url}" alt="Astronomy Picture of the Day APOD" />
+                <figcaption>${apod && apod.image.explanation}</figcaption>
             </figure>
         `)
     }
@@ -152,8 +153,7 @@ const getRover = (state) => {
 // Astronomy Picture of the Day
 const getImageOfTheDay = (state) => {
     let { apod } = state
-    console.log("getImageOfTheDay function: state", state)
-
+    
     fetch(`http://localhost:3000/apod`)
         .then(res => res.json())
         .then(apod => updateStore(state, { apod }))
