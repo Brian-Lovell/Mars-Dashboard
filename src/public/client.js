@@ -106,9 +106,9 @@ const MissionManifest = (mission, rover) => {
     }
     return `
         <ul> 
-            <li>Launch Date: ${mission.mission.photo_manifest.launch_date}</li>
-            <li>Landing Date: ${mission.mission.photo_manifest.landing_date}</li>
-            <li>Rover Status: ${mission.mission.photo_manifest.status}</li>
+            <li>Launch Date: ${mission && mission.mission.photo_manifest.launch_date}</li>
+            <li>Landing Date: ${mission && mission.mission.photo_manifest.landing_date}</li>
+            <li>Rover Status: ${mission && mission.mission.photo_manifest.status}</li>
         </ul>
         `
 }
@@ -119,10 +119,10 @@ const ImageGallery = (gallery, rover) => {
         getImageGallery(gallery, rover)   
     }
     return `
-        <h3>${gallery.photos.latest_photos[0].camera.full_name}</h3>
+        <h3>${gallery && gallery.photos.latest_photos[0].camera.full_name}</h3>
         <figure>
-            <img src="${gallery.photos.latest_photos[0].img_src}" alt="Astronomy Picture of the Day"/>
-            <figcaption>Photo Date: ${gallery.photos.latest_photos[0].earth_date}<figcaption>
+            <img src="${gallery && gallery.photos.latest_photos[0].img_src}" alt="Astronomy Picture of the Day"/>
+            <figcaption>Photo Date: ${gallery && gallery.photos.latest_photos[0].earth_date}<figcaption>
         </figure>
     `
 }
