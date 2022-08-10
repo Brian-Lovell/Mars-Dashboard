@@ -11,13 +11,11 @@ let store = Immutable.Map({
 const root = document.getElementById('root')
 
 const updateStore = (state, newState) => {
-    console.log("updateStore function store and newState",state,newState)
     store = store.merge(newState)
     render(root, store)
 }
 
 const render = async (root, state) => {
-    console.log("render function: root, state", root,state)
     root.innerHTML = App(state)
 }
 
@@ -29,10 +27,6 @@ const App = (state) => {
     let apod = state.get("apod")
     let gallery = state.get("gallery")
     let rovers = state.get("rovers")
-    console.log("State Get Mission:", mission)
-    console.log("App function: state",state)
-    console.log("rovers: ", rovers)
- 
 
     return `
         <header>
@@ -81,9 +75,7 @@ const ImageOfTheDay = (apod) => {
     // If image does not already exist, or it is not from today -- request it again
     const today = new Date()
     const photodate = new Date(apod.date)
-    console.log(photodate.getDate(), today.getDate());
 
-    console.log(photodate.getDate() === today.getDate());
     if (!apod || apod.date === today.getDate() ) {
         getImageOfTheDay(apod)
     }
@@ -108,12 +100,9 @@ const ImageOfTheDay = (apod) => {
 }
 
 // Mission Manifest
-const MissionManifest = (mission, rover) => {
-    console.log("MissionManifest function: mission, rover", mission, rover)
-    
+const MissionManifest = (mission, rover) => {   
     if (!mission || mission.mission.photo_manifest.name != rover) {
-        getMissionManifest(mission, rover)
-        
+        getMissionManifest(mission, rover)      
     }
     return `
         <ul> 
@@ -126,10 +115,8 @@ const MissionManifest = (mission, rover) => {
 
 // Image Gallery
 const ImageGallery = (gallery, rover) => {
-    console.log("ImageGallery function: gallery, rover ", gallery, rover)
     if (!gallery || gallery.photos.latest_photos[0].rover.name != rover) {
-        getImageGallery(gallery, rover)
-        
+        getImageGallery(gallery, rover)   
     }
     return `
         <h3>${gallery.photos.latest_photos[0].camera.full_name}</h3>
@@ -144,7 +131,6 @@ const ImageGallery = (gallery, rover) => {
 // Rover Select
 const getRover = (state) => {
     let rover = state
-    console.log("getRover function: state", state)
     updateStore(state, { rover })
 
     return
@@ -165,7 +151,6 @@ const getImageOfTheDay = (state) => {
 const getMissionManifest = (state, rover) => {
     let { mission } = state
     const selectedRover = rover
-    console.log("getMissionManifest function: state, rover", state, rover)
 
     fetch(`http://localhost:3000/mission-${selectedRover}`)
         .then(res => res.json())
@@ -179,7 +164,6 @@ const getMissionManifest = (state, rover) => {
 const getImageGallery = (state, rover) => {
     let { gallery } = state
     const selectedRover = rover
-    console.log("getImageGallery function: state, rover", state, rover)
 
     fetch(`http://localhost:3000/photos-${selectedRover}`)
         .then(res => res.json())
