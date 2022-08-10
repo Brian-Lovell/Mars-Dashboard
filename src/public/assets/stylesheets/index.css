@@ -19,10 +19,16 @@ body {
     justify-content: center;
   }
   
+  nav {
+    background-color:#8dacc8;
+    margin: 10px 0 10px 0;
+  }
   nav ul {
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content:center;
+    overflow-y: auto;
+    overflow-x: auto;
   }
 
   main {
@@ -43,7 +49,7 @@ body {
     background-color: #bddeef;
     padding:2%;
     margin: 10px;
-    box-shadow: 0 4px 8px 0 #8dacc8;
+    box-shadow: 0 0 8px 0 #8dacc8;
     transition: 0.3s;
     border-radius: 5px;
   }
@@ -100,11 +106,36 @@ body {
   .gallery {
     flex:2;
   }
+
+  button {
+    background-color: #bddeef;
+    border: none;
+    border-radius: 05%;
+    box-shadow: 0 0 2x black;
+    color: #1b2546;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    transition-duration: 0.5s;
+  }
+
+  button:hover {
+    box-shadow:0 0 5px #bddeef;
+    color:#e1edf3;
+    text-shadow:0 0 5px #1b2546;
+  }
   
   /* -------------------  TABLET  --------------------- */
   @media (min-width: 768px) {
     article {
       display:flex;
+      flex-direction: row;
+    }
+
+    nav ul {
       flex-direction: row;
     }
   }
