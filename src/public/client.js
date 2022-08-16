@@ -34,9 +34,7 @@ const App = (state) => {
         </header>
         <nav>
             <ul>
-                <li><button id="one" type="button" onclick="getRover('${rovers.get(0)}')">${rovers.get(0)}</button></li>
-                <li><button id="two" type="button" onclick="getRover('${rovers.get(1)}')">${rovers.get(1)}</button></li>
-                <li><button id="three" type="button" onclick="getRover('${rovers.get(2)}')">${rovers.get(2)}</button></li>
+                ${createMenu(rovers)}
             </ul>
         </nav>
         <main>
@@ -68,6 +66,20 @@ window.addEventListener('load', () => {
 })
 
 // ------COMPONENTS
+// Higher Order Functions :)
+
+function createMenu(array) {
+    console.log("createMenu", array)
+    return array.forEach(createButton)
+}
+
+let createButton = (item, index, arr) => {
+    console.log("createButton", item, index, arr)
+    return `
+    <li><button id="one" type="button" onclick="getRover('${arr[index]}')">${arr[index]}</button></li>
+    `
+}
+
 
 // Image of the Day
 const ImageOfTheDay = (apod) => {
