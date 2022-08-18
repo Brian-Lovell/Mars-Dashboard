@@ -111,7 +111,7 @@ body {
     background-color: #bddeef;
     border: none;
     border-radius: 05%;
-    box-shadow: 0 0 2x black;
+    box-shadow: 0 0 5px #1b2546;
     color: #1b2546;
     padding: 15px 32px;
     text-align: center;
