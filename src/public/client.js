@@ -72,6 +72,7 @@ function createMenu(array) {
     console.log("createMenu", array)
 
         for (let value of array) {
+            console.log("for of",value)
             return createButton(value)   
         }
     
