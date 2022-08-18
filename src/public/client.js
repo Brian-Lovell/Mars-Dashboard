@@ -68,20 +68,25 @@ window.addEventListener('load', () => {
 // ------COMPONENTS
 // Higher Order Functions :)
 
-function createMenu(array) {
-    console.log("createMenu", array)
-
-        for (let value of array) {
-            console.log("for of",value)
-            return createButton(value)   
-        }
-    
+const createMenu = (array) => {
+    console.log("createMenu",array)
+    return loopArray(array)
 }
-let createButton = (value) => {
+const createButton = (value) => {
     console.log("createButton", value)
     return `
-    <li><button id="one" type="button" onclick="getRover('${value}')">${value}</button></li>
+    <li><button type="button" onclick="getRover('${value}')">${value}</button></li>
     `
+}
+
+const loopArray = (array) => {
+    results = []
+    for (value of array) {
+        console.log("loopArray",value)
+        result = createButton(value)
+        results.push(result)
+    }
+    return results
 }
 
 
