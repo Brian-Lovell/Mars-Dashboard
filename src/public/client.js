@@ -5,6 +5,7 @@ let store = Immutable.Map({
     gallery: '',
     rovers: Immutable.List(['Curiosity', 'Opportunity', 'Spirit']),
     rover: 'Curiosity',
+    menubuilt: false,
 })
 
 // Add elementals to page
@@ -27,6 +28,7 @@ const App = (state) => {
     let apod = state.get("apod")
     let gallery = state.get("gallery")
     let rovers = state.get("rovers")
+    let menubuilt = state.get('menubuilt')
 
     return `
         <header>
@@ -34,7 +36,7 @@ const App = (state) => {
         </header>
         <nav>
             <ul>
-                ${createMenu(rovers)}
+                ${createMenu(rovers,menubuilt)}
             </ul>
         </nav>
         <main>
@@ -68,9 +70,12 @@ window.addEventListener('load', () => {
 // ------COMPONENTS
 // Higher Order Functions :)
 
-const createMenu = (array) => {
-    console.log("createMenu",array)
-    return loopArray(array)
+const createMenu = (array, dataCheck) => {
+    if (dataCheck == false) {
+        console.log("createMenu",array)
+        // updateStore(state, { menubuilt: true})
+        return loopArray(array)
+    }
 }
 const createButton = (value) => {
     console.log("createButton", value)
@@ -80,11 +85,11 @@ const createButton = (value) => {
 }
 
 const loopArray = (array) => {
-    results = []
+    results = ''
     for (value of array) {
         console.log("loopArray",value)
         result = createButton(value)
-        results.push(result)
+        results = result + results
     }
     return results
 }
