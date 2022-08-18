@@ -72,13 +72,10 @@ window.addEventListener('load', () => {
 
 const createMenu = (array, dataCheck) => {
     if (dataCheck == false) {
-        console.log("createMenu",array)
-        // updateStore(state, { menubuilt: true})
         return loopArray(array)
     }
 }
 const createButton = (value) => {
-    console.log("createButton", value)
     return `
     <li><button type="button" onclick="getRover('${value}')">${value}</button></li>
     `
@@ -87,7 +84,6 @@ const createButton = (value) => {
 const loopArray = (array) => {
     results = ''
     for (value of array) {
-        console.log("loopArray",value)
         result = createButton(value)
         results = result + results
     }
