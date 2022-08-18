@@ -68,15 +68,16 @@ window.addEventListener('load', () => {
 // ------COMPONENTS
 // Higher Order Functions :)
 
-function createMenu(list) {
-    console.log("createMenu", list)
-    return list.forEach(
-        createButton()
-    )
-}
+function createMenu(array) {
+    console.log("createMenu", array)
 
-let createButton = (value, key, iter) => {
-    console.log("createButton", value, key, iter)
+        for (let value of array) {
+            return createButton(value)   
+        }
+    
+}
+let createButton = (value) => {
+    console.log("createButton", value)
     return `
     <li><button id="one" type="button" onclick="getRover('${value}')">${value}</button></li>
     `
