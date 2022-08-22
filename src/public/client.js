@@ -23,12 +23,12 @@ const render = async (root, state) => {
 //Create page layout
 const App = (state) => {
     // let { rovers, apod, mission, gallery, rover,} = state
-    let mission = state.get("mission")
-    let rover = state.get("rover")
-    let apod = state.get("apod")
-    let gallery = state.get("gallery")
-    let rovers = state.get("rovers")
-    let menubuilt = state.get('menubuilt')
+    const mission = state.get("mission")
+    const rover = state.get("rover")
+    const apod = state.get("apod")
+    const gallery = state.get("gallery")
+    const rovers = state.get("rovers")
+    const menubuilt = state.get('menubuilt')
 
     return `
         <header>
@@ -152,7 +152,7 @@ const ImageGallery = (gallery, rover) => {
 //API CALLS
 // Rover Select
 const getRover = (state) => {
-    let rover = state
+    const rover = state
     updateStore(state, { rover })
 
     return
@@ -160,7 +160,7 @@ const getRover = (state) => {
 
 // Astronomy Picture of the Day
 const getImageOfTheDay = (state) => {
-    let { apod } = state
+    const { apod } = state
     
     fetch(`http://localhost:3000/apod`)
         .then(res => res.json())
@@ -171,7 +171,7 @@ const getImageOfTheDay = (state) => {
 
 // Mission Manifest
 const getMissionManifest = (state, rover) => {
-    let { mission } = state
+    const { mission } = state
     const selectedRover = rover
 
     fetch(`http://localhost:3000/mission-${selectedRover}`)
@@ -184,7 +184,7 @@ const getMissionManifest = (state, rover) => {
 // Image Gallery
 
 const getImageGallery = (state, rover) => {
-    let { gallery } = state
+    const { gallery } = state
     const selectedRover = rover
 
     fetch(`http://localhost:3000/photos-${selectedRover}`)
