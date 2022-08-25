@@ -146,11 +146,13 @@ const ImageGallery = (galleryData, rover) => {
     return galleryData.photos.latest_photos.map((e, index) => {
         console.log(e,index); 
         return    `
+        <div class=image-card>
             <h3>${e && e.camera.full_name}</h3>
             <figure>
                 <img src="${e && e.img_src}" alt="Latest ${rover} photo"/>
                 <figcaption>Photo Date: ${e && e.earth_date}<figcaption>
             </figure>
+        </div>
             `
         })
     }
