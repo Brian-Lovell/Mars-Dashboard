@@ -54,9 +54,11 @@ body {
     border-radius: 5px;
   }
 
-  section:hover{
+  /* section:hover{
     box-shadow: 0 8px 16px 0 #bddeef;
-  }
+  } */
+
+
 
   aside {
     flex:1;
@@ -84,6 +86,8 @@ body {
 
   h3 {
     margin: 0 0 0 20px;
+    color:#e1edf3;
+    text-shadow:0 0 1px #bddeef;
   }
 
   p {
@@ -96,6 +100,11 @@ body {
 
   img {
     border-radius: 5px;
+  }
+
+  figcaption {
+    color:#e1edf3;
+    text-shadow:0 0 1px #bddeef;
   }
 
 /* Classes */
@@ -127,6 +136,20 @@ body {
     color:#e1edf3;
     text-shadow:0 0 5px #1b2546;
   }
+
+  .image-card {
+    background-color: #1b2546;
+    padding:2%;
+    margin: 10px;
+    box-shadow: 0 0 8px 0 #8dacc8;
+    transition: 0.3s;
+    border-radius: 5px;
+  }
+
+  .image-card:hover{
+    box-shadow: 0 8px 16px 0 #0f1113;
+  }
+
   
   /* -------------------  TABLET  --------------------- */
   @media (min-width: 768px) {
@@ -138,6 +161,11 @@ body {
     nav ul {
       flex-direction: row;
     }
+    
+    .gallery {
+      flex-direction:row;
+      
+    }
   }
   
   /* -------------------  DESKTOP  -------------------- */
@@ -146,6 +174,11 @@ body {
     main {
       display:flex;
       flex-direction: row;
+    }
+
+    .gallery {
+      flex-direction:row;
+
     }
   }
   
