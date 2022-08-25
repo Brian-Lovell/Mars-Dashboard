@@ -136,18 +136,38 @@ const MissionManifest = (mission, rover) => {
 }
 
 // Image Gallery
-const ImageGallery = (gallery, rover) => {
-    if (!gallery || gallery.photos.latest_photos[0].rover.name != rover) {
-        getImageGallery(gallery, rover)   
+const ImageGallery = (galleryData, rover) => {
+    console.log(galleryData)
+
+    if (galleryData == '' ||galleryData.photos.latest_photos[0].rover.name != rover)  {
+        getImageGallery(galleryData, rover)
+        return `<p>Working...<p>`
+    } else {
+    return galleryData.photos.latest_photos.map((e, index) => {
+        console.log(e,index); 
+        return    `
+            <h3>${e && e.camera.full_name}</h3>
+            <figure>
+                <img src="${e && e.img_src}" alt="Latest ${rover} photo"/>
+                <figcaption>Photo Date: ${e && e.earth_date}<figcaption>
+            </figure>
+            `
+        })
     }
-    return `
-        <h3>${gallery && gallery.photos.latest_photos[0].camera.full_name}</h3>
-        <figure>
-            <img src="${gallery && gallery.photos.latest_photos[0].img_src}" alt="Astronomy Picture of the Day"/>
-            <figcaption>Photo Date: ${gallery && gallery.photos.latest_photos[0].earth_date}<figcaption>
-        </figure>
-    `
 }
+
+    // if (!gallery || gallery.photos.latest_photos[0].rover.name != rover) {
+    //     getImageGallery(gallery, rover)   
+    // }
+
+    // return `
+        // <h3>${gallery && gallery.photos.latest_photos[0].camera.full_name}</h3>
+        // <figure>
+        //     <img src="${gallery && gallery.photos.latest_photos[0].img_src}" alt="Astronomy Picture of the Day"/>
+        //     <figcaption>Photo Date: ${gallery && gallery.photos.latest_photos[0].earth_date}<figcaption>
+        // </figure>
+    // `
+
 
 //API CALLS
 // Rover Select
