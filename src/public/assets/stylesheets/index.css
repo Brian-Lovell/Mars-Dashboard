@@ -92,6 +92,7 @@ body {
 
   p {
     margin: 5px 0 5px 20px;
+    color: #1b2546;
   }
 
   li {
@@ -100,6 +101,8 @@ body {
 
   img {
     border-radius: 5px;
+    width: 100%;
+    height: auto;
   }
 
   figcaption {
@@ -113,7 +116,10 @@ body {
   }
 
   .gallery {
+    display:flex;
     flex:2;
+    flex-wrap:wrap;
+    overflow-x: auto;
   }
 
   button {
@@ -179,6 +185,16 @@ body {
     .gallery {
       flex-direction:row;
 
+    }
+
+    .image-card {
+      flex-direction: row;
+      flex: 2;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
     }
   }
   
