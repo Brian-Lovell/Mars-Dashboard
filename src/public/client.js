@@ -111,11 +111,11 @@ const ImageOfTheDay = (apod) => {
         `)
     } else {
         return (`
-            <h3>Astronomy Picture of the Day</h3>
+            <h2>Astronomy Picture of the Day</h2>
             <h4>${apod && apod.image.title}</h4>
             <figure>
                 <img src="${apod && apod.image.url}" alt="Astronomy Picture of the Day APOD" />
-                <figcaption>${apod && apod.image.explanation}</figcaption>
+                <figcaption><p>${apod && apod.image.explanation}</p></figcaption>
             </figure>
         `)
     }
@@ -137,14 +137,12 @@ const MissionManifest = (mission, rover) => {
 
 // Image Gallery
 const ImageGallery = (galleryData, rover) => {
-    console.log(galleryData)
 
     if (galleryData == '' ||galleryData.photos.latest_photos[0].rover.name != rover)  {
         getImageGallery(galleryData, rover)
         return `<p>Working...<p>`
     } else {
     return galleryData.photos.latest_photos.map((e, index) => {
-        console.log(e,index); 
         return    `
         <div class=image-card>
             <h3>${e && e.camera.full_name}</h3>
